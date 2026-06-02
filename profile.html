@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santosh Mahato | Personal Profile</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0e;
+      --surface: rgba(255, 255, 255, 0.03);
+      --surface-hover: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.05);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.5);
+      --secondary: #3b82f6;
+      --glass-blur: blur(16px);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Animated Background Orbs */
+    .bg-orbs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 15s infinite ease-in-out alternate;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      top: -100px;
+      left: -100px;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--secondary);
+      bottom: -150px;
+      right: -100px;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 900px;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* Glassmorphic Card */
+    .glass-card {
+      background: var(--surface);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.7s ease;
+    }
+
+    .glass-card:hover::before {
+      left: 150%;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Header / Intro */
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .profile-img-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: var(--bg-dark);
+      border: 4px solid var(--bg-dark);
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #fff, #a5b4fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Section Titles */
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill-tag {
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 99px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    /* Contact Details */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border);
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--accent);
+      border-radius: 10px;
+      font-size: 1.2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-value {
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    /* Button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border-radius: 99px;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .glass-card { padding: 2rem; }
+      .container { padding: 2rem 1rem; }
+    }
+    
+    /* Reveal Animation on Load */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealAnim 0.8s ease forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    @keyframes revealAnim {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <div class="container">
+    
+    <!-- Introduction Section -->
+    <div class="glass-card reveal">
+      <header>
+        <div class="profile-img-container">
+          <!-- Fallback image logic, if local image exists it will load -->
+          <img src="WhatsApp Image 2026-05-09 at 6.11.07 PM.jpeg" alt="Santosh Mahato" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Santosh+Mahato&background=0D8ABC&color=fff&size=120'"/>
+        </div>
+        <h1>Santosh Mahato</h1>
+        <div class="subtitle">Software Developer</div>
+        <p class="intro-text">
+          A passionate software developer based in Boisar, India. I build clean, scalable web applications and am always excited to learn, ship, and grow. Currently pursuing Computer Engineering, I specialize in full-stack development and creating exceptional digital experiences.
+        </p>
+      </header>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="glass-card reveal delay-1">
+      <h2>Skills & Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-tag">HTML5 & CSS3</div>
+        <div class="skill-tag">JavaScript (ES6+)</div>
+        <div class="skill-tag">React.js</div>
+        <div class="skill-tag">Node.js</div>
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">SQL & MongoDB</div>
+        <div class="skill-tag">.NET Framework</div>
+        <div class="skill-tag">UI/UX Design</div>
+        <div class="skill-tag">Git & GitHub</div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="glass-card reveal delay-2">
+      <h2>Contact Details</h2>
+      <div class="contact-list">
+        
+        <a href="mailto:santoshkumarmahato284@gmail.com" class="contact-item">
+          <div class="contact-icon">✉</div>
+          <div class="contact-info">
+            <span class="contact-label">Email Address</span>
+            <span class="contact-value">santoshkumarmahato284@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="tel:+918329224214" class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <span class="contact-label">Phone Number</span>
+            <span class="contact-value">+91 83292 24214</span>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/in/santoshmah" target="_blank" class="contact-item">
+          <div class="contact-icon">in</div>
+          <div class="contact-info">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/santoshmah</span>
+          </div>
+        </a>
+        
+      </div>
+      
+      <div style="text-align: center;">
+        <a href="santosh_cv (1).pdf" target="_blank" class="cta-button">Download Resume</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Santosh Mahato. AI-Generated Portfolio Profile.</p>
+  </footer>
+
+  <script>
+    // Add subtle 3D tilt effect to cards based on mouse movement
+    document.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.glass-card');
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+      
+      cards.forEach(card => {
+        // Only apply if we are hovering close to it (optional optimization)
+        card.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg) translateY(-5px)`;
+      });
+    });
+
+    // Reset transform when mouse leaves
+    document.addEventListener('mouseleave', () => {
+      const cards = document.querySelectorAll('.glass-card');
+      cards.forEach(card => {
+        card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)`;
+      });
+    });
+  </script>
+</body>
+</html>
